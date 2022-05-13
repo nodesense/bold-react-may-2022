@@ -1,8 +1,8 @@
 // CartItem.js
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-class CartItem extends Component {
+class CartItem extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -10,6 +10,26 @@ class CartItem extends Component {
     //TODO: Ref
     //TODO: componentWillMount
     //TODO: state from props, qty
+
+    // called aafter first render
+    // called on creatiog time
+    // calling api, start timer, susbcribe for event
+    componentDidMount() {
+        console.log("CartItem componentDidMount")
+    }
+
+    // called on update cycle
+    // after second render 
+    // use dom to update chart/scroll position etc
+    componentDidUpdate() {
+        console.log("CartItem componentDidUpdate")
+    }
+
+    // when component to be destroyed
+    // stop the timer, stop susbcription, stop api calls etc
+    componentWillUnmount() {
+        console.log("CartItem componentWillUnmount")
+    }
    
     render() {
         // no order for object while destructring

@@ -37,6 +37,25 @@ import PropTypes from "prop-types";
         })
     }
      
+    static getDerivedStateFromProps(props, state) {
+        console.log("CartSummary getDerivedStateFromProps")
+
+        let discount = 0;
+
+        if (props.count >= 10) {
+            discount = 20;
+        } else if (props.count >= 5) {
+            discount = 10;
+        }
+
+        let grandTotal = props.amount - (props.amount * discount / 100);
+
+        // return a new state, that will be merged with this.state
+        return {
+            discount, 
+            grandTotal
+        }
+    }
 
 
     

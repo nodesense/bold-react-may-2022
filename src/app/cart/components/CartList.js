@@ -1,13 +1,20 @@
 // CartList.js
 
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import CartItem from "./CartItem";
 
  //TODO: PureComponent
+ // PureCompoennt is build in component part of react
+ // it has function shouldComponentUpdate, this function returns true or false
+ // if true means render will be called on update cycle
+ // if false, render shalll not be called on update ccyel
+ // on create cycle, shouldComponentUpdate is not called, we cannot stop render function
+ // on update cycle, we can control render function being called
 
- class CartList extends Component {
+
+ class CartList extends PureComponent {
     constructor(props) {
         super(props);
     }
