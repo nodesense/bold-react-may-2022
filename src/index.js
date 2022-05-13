@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 
 import App from './app/App';
+
+import "./index.css" // webpack plugin , extract text
+
 // v.dom
 // const h1 = React.createElement("h1", {id : 'appheader', className:"active"}, 'Welcome to React');
 

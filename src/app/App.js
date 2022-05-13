@@ -1,4 +1,5 @@
 import React from 'react';
+import Cart from './cart/components/Cart';
 import Footer from './components/Footer';
 import Header from './components/Header';
 
@@ -26,6 +27,9 @@ class App extends React.Component {
         return (
             <div>
                  <Header title="Product App" />
+
+                 <Cart />
+
                  <Footer year={2022} title="Product App"
                         branches={ ['Mysore', 'Bangalore', 'Chennai'] }
                         weekend
