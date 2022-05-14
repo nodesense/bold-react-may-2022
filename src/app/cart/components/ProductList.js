@@ -39,17 +39,36 @@ const  ProductList = (props)  => {
         useEffect(() => {
             console.log("useEffect 2 called");
 
+            const CancelToken = axios.CancelToken;
+            const source = CancelToken.source();
+
             (async()=>{
                 setLoading(true)
-                  let data = await axios(API);
+
+                try { 
+                  let data = await axios(API,  {
+                    cancelToken: source.token
+                  });
                     setProducts(data.data)
                     setLoading(false)
+                }catch(err)  {
+                    if (axios.isCancel(err)) {
+                        console.log('Request canceled', err.message);
+                      } else {
+                        // handle error
+                        console.log("Error ")
+                      } 
+                }
+
                 })();
            
 
             // return destroy/callback function
             return () => {
                 console.log("useEffect 2 componentwillUnmount like")
+                                
+                // cancel the request (the message parameter is optional)
+                source.cancel('Operation canceled by the user.');
             }
         }, [])
 
