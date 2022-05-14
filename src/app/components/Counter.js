@@ -14,6 +14,21 @@ const Counter = (props) => {
     // useState returns array, first element is current state
     // second element is setter function for state
     const [count, setCount] = useState(0)
+
+    //FIXME: state inside useEffect
+    // componentdid mount like called once
+    useEffect ( () => {
+        const handle = setInterval(() => {
+            console.log("Timer called ", count)
+            setCount(count + 1) // FIXME
+        }, 5000)
+
+        return () => {
+            console.log("effect unmount clear inverval ", handle)
+            clearInterval(handle)
+        }
+    }, [])
+
     return (
         <div>
             <h2>Counter</h2>
