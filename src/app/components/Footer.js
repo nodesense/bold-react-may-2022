@@ -1,6 +1,7 @@
 // Footer.js
 import React from 'react';
 import PropTypes from 'prop-types';
+import ThemeContext from '../contexts/ThemeContext';
 
 // props are title, year, branches [array], weekend (bool)
 // children is keyword
@@ -8,7 +9,8 @@ import PropTypes from 'prop-types';
 const Footer = ({title, year, branches, weekend, children}) => {
     console.log("Footer render")
     return (
-        <div>
+        
+        <div >
             <hr />
             <p>Copyrights {year}, {title} </p>
             {/* in JSX, we can use expression, not statement */}
@@ -18,8 +20,24 @@ const Footer = ({title, year, branches, weekend, children}) => {
                 weekend? <p>Weekend open </p> :
                          <p>Weekend closed</p>
             }
-
+             
             {children}
+            
+            {/* theme => () is a function invoked by ThemeContext consumer with theme value
+                theme = lightblue as default if no provider for theme
+                otherwise theme shall have value of provided value
+            */}
+            <ThemeContext.Consumer>
+            {
+                theme => (
+                    <div style = {  {background: theme} }>
+                        <p>Theme is {theme}</p>
+                    </div>
+                )
+            }
+            </ThemeContext.Consumer>
+           
+
         </div>
     )
 } 

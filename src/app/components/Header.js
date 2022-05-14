@@ -1,5 +1,7 @@
 // functional component
 import React from 'react';
+import LangContext from '../contexts/LangContext';
+import ThemeContext from '../contexts/ThemeContext';
 
 
 // this function is a component,
@@ -14,6 +16,24 @@ const Header = (props) => {
     return (
         <div>
             <h2>{title}</h2>
+            <ThemeContext.Consumer>
+                {
+                    value => <p style = { {background: value} }> Shopping Cart </p>
+                }
+            </ThemeContext.Consumer>
+
+            <LangContext.Consumer>
+              {  lang => (
+                    <>
+                     <button > {lang.home}</button>   
+                     <button > {lang.products}</button>  
+                     <button > {lang.cart}</button>  
+                     <button > {lang.login}</button>  
+                    </>
+                )
+              }
+            </LangContext.Consumer>
+
             <hr />
         </div>
     )
