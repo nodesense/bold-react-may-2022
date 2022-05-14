@@ -8,6 +8,13 @@ import Header from './components/Header';
 import LangContext, { English, Hindi, Tamil } from './contexts/LangContext';
 import ThemeContext from './contexts/ThemeContext';
 
+// as alias name
+import {BrowserRouter as Router, 
+        Route,
+        Switch, 
+        Redirect
+} from 'react-router-dom';
+
 
 class App extends React.Component {
     // called 1st
@@ -54,6 +61,7 @@ class App extends React.Component {
         // ThemeContext.Provider provides values for ThemeContext.Consumer
         // by overriding default value given 
         return (
+            <Router>
             <LangContext.Provider value = {this.state.lang} >
             <ThemeContext.Provider value= "lightgreen">
             <div>
@@ -62,14 +70,38 @@ class App extends React.Component {
                  <button onClick={this.changeTamil}>தமிழ்</button>
                  <Header title="Product App" />
 
-                <ProductList></ProductList>
-                
-                 <Counter />
-                
-                 <Checkout />
+            {/* switch will pick first match, will ignore not found 
+                if user visit other page */}
 
-                 <Cart />
+            <Switch>
+                <Route path="/products">
+                    <ProductList></ProductList>
+                </Route>
 
+                <Route path="/counter">
+                    <Counter />
+                </Route>
+                
+                <Route path="/checkout">
+                    <Checkout />
+                </Route>
+                
+                <Route path="/cart">
+                    <Cart />
+                </Route>
+
+                {/* route uses starts with pattern  by default
+                    can use exact match with exact property    
+                */}
+                <Route path="/" exact>
+                    <h2>Welcome to shopping app</h2>
+                </Route>
+
+                {/* page not found, matched everything */}
+                <Route path="*">
+                    <h2>Page you are looking no longer available</h2>
+                </Route>
+            </Switch>
                 
                  <Footer year={2022} title="Product App"
                         branches={ ['Mysore', 'Bangalore', 'Chennai'] }
@@ -85,6 +117,7 @@ class App extends React.Component {
             </div>
             </ThemeContext.Provider>
             </LangContext.Provider>
+            </Router>
         )
     }
 }

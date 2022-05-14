@@ -3,6 +3,7 @@ import React from 'react';
 import LangContext from '../contexts/LangContext';
 import ThemeContext from '../contexts/ThemeContext';
 
+import {Link, NavLink} from 'react-router-dom';
 
 // this function is a component,
 // create and return v.doms
@@ -25,10 +26,15 @@ const Header = (props) => {
             <LangContext.Consumer>
               {  lang => (
                     <>
-                     <button > {lang.home}</button>   
-                     <button > {lang.products}</button>  
-                     <button > {lang.cart}</button>  
-                     <button > {lang.login}</button>  
+                     <NavLink className="button" to="/"  > {lang.home}</NavLink>   
+                     <NavLink  className="button" to="/products"  > {lang.products}</NavLink>  
+                     <NavLink  className="button" to="/cart"  > {lang.cart}</NavLink>  
+                     <NavLink  className="button" to="/redux-cart"  >  Redux Cart </NavLink>  
+                     <NavLink  className="button" to="/checkout"  > Checkout </NavLink>  
+                     <NavLink  className="button" to="/counter"  >  Counter </NavLink>  
+                     <NavLink  className="button" to="/checkout-old"  > Checkout Redir </NavLink>  
+                     
+                     <Link  className="button" to="/login" > {lang.login}</Link>  
                     </>
                 )
               }

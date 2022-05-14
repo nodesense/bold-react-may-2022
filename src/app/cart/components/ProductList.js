@@ -20,24 +20,37 @@ const  ProductList = (props)  => {
         //similar to componentDidMount and componentDidUpdate
         // called on creation and update cycle
         // called after function comp render
+        // useEffect can return a callback function that shall be called by react 
+        //                      on cleanup purpose similar to  componentwillUnmount
         useEffect( () => {
             console.log("useEffect 1 called")
+
+            // returned callback called by react during unmount
+            return () => {
+                //this function called during component unmount/before destroy
+                console.log("useEffect 1 componentwillUnmount like")
+            }
         })
 
         // 2nd argument to useEffect is list of dependent variabels
         // to call useEffect hoook on value changes
         // using [] empty array means, useEffect called only creation cycle, not on update cycle
         // //similar to   componentDidMount
-        useEffect(async () => {
-            console.log("useEffect 2 called")
-            console.log("getting products from server")
-            setLoading(true)
+        useEffect(() => {
+            console.log("useEffect 2 called");
 
-            const resp = await axios.get(API)
-            console.log("got product from server", resp.data)
-            setLoading(false)
-            setProducts(resp.data)
+            (async()=>{
+                setLoading(true)
+                  let data = await axios(API);
+                    setProducts(data.data)
+                    setLoading(false)
+                })();
+           
 
+            // return destroy/callback function
+            return () => {
+                console.log("useEffect 2 componentwillUnmount like")
+            }
         }, [])
 
         if (loading) {
@@ -63,7 +76,7 @@ const  ProductList = (props)  => {
                     <tbody>
                         {
                              products.map (product => (
-                                <tr>
+                                <tr key={product.id}>
                                     <td>{product.name}</td>
                                     <td>{product.price}</td>
                                 </tr>
