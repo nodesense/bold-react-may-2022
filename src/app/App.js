@@ -1,6 +1,7 @@
 import React from 'react';
 import Cart from './cart/components/Cart';
 import Checkout from './cart/components/Checkout';
+import ProductList from './cart/components/ProductList';
 import Counter from './components/Counter';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -61,6 +62,8 @@ class App extends React.Component {
                  <button onClick={this.changeTamil}>தமிழ்</button>
                  <Header title="Product App" />
 
+                <ProductList></ProductList>
+                
                  <Counter />
                 
                  <Checkout />
