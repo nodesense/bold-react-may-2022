@@ -18,6 +18,7 @@ const Counter = (props) => {
     //FIXME: state inside useEffect
     // componentdid mount like called once
     useEffect ( () => {
+        console.log("Starting timer")
         const handle = setInterval(() => {
             console.log("Timer called ", count)
             setCount(count + 1) // FIXME
@@ -27,7 +28,7 @@ const Counter = (props) => {
             console.log("effect unmount clear inverval ", handle)
             clearInterval(handle)
         }
-    }, [])
+    }, []) //count//FIXME
 
     return (
         <div>
