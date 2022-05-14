@@ -1,6 +1,7 @@
 import React from 'react';
 import Cart from './cart/components/Cart';
 import Checkout from './cart/components/Checkout';
+import Counter from './components/Counter';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import LangContext, { English, Hindi, Tamil } from './contexts/LangContext';
@@ -59,6 +60,8 @@ class App extends React.Component {
                  <button onClick={this.changeHindi}>हिन्दी</button>
                  <button onClick={this.changeTamil}>தமிழ்</button>
                  <Header title="Product App" />
+
+                 <Counter />
                 
                  <Checkout />
 
