@@ -11,6 +11,12 @@ npm start
 ```
 
 
+```
+npm install axios
+npm install react-router-dom@^5
+npm install redux react-redux redux-thunk
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

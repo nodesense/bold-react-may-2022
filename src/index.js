@@ -8,6 +8,8 @@ import App from './app/App';
 
 import "./index.css" // webpack plugin , extract text
 
+import "./redux-demo";
+
 // v.dom
 // const h1 = React.createElement("h1", {id : 'appheader', className:"active"}, 'Welcome to React');
 
