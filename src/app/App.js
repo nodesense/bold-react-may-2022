@@ -15,6 +15,8 @@ import {BrowserRouter as Router,
         Redirect
 } from 'react-router-dom';
 
+import ReduxCart from './redux-cart/containers/ReduxCart';
+
 
 class App extends React.Component {
     // called 1st
@@ -84,6 +86,10 @@ class App extends React.Component {
                 
                 <Route path="/checkout">
                     <Checkout />
+                </Route>
+
+                <Route path="/redux-cart">
+                    <ReduxCart />
                 </Route>
                 
                 <Route path="/cart">

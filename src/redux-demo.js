@@ -39,12 +39,24 @@ console.log("Start after addItem ", state)
 console.log("dispatch update item ")
 
 // set 5 quantities
-store.dispatch(cartActions.updateItemInCart(1, 5))
+//store.dispatch(cartActions.updateItemInCart(1, 5))
+// bindActionCreators, it wraps action creator with dispatch and create a wrapper function
+// if we call wrapper function, it will call action creator and
+//        action creator returns action
+//        action shall be dispatched automatically
+const updateItemInCart = bindActionCreators(cartActions.updateItemInCart,
+                                            store.dispatch)
+//bindactioncreator function, wrap updateItemInCart and dispatch, automatically dispatch action
+updateItemInCart(1, 5) // equal to  store.dispatch(cartActions.updateItemInCart(1, 5))                  
+
 
 console.log("State after update qty ", store.getState())
 
 console.log("dispatch addItem")
-store.dispatch(cartActions.addItemToCart(2, 'Product 2', 200))
+// store.dispatch(cartActions.addItemToCart(2, 'Product 2', 200))
+// action will include methods that shal be wrapped with dispatch
+const actions = bindActionCreators(cartActions, store.dispatch)
+actions.addItemToCart(2, 'Product 2', 200)
 console.log("State after add item ", store.getState())
 
 

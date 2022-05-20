@@ -2,6 +2,7 @@
 // redux-cart/containers/ReduxCart.js
 
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 import ReduxCart from '../components/ReduxCart';
 import * as cartActions from '../state/actions/cart.actions';
 
@@ -41,10 +42,13 @@ export const mapDispatchToProps = (dispatch, getState) => {
             dispatch(action)
         },
 
-        emptyCart: () => {
-            console.log("Dispatching emptyCart")
-            dispatch(cartActions.emptyCart())
-        }
+        // emptyCart: () => {
+        //     console.log("Dispatching emptyCart")
+        //     dispatch(cartActions.emptyCart())
+        // }
+        // instead using bindActionCreators
+        emptyCart: bindActionCreators(cartActions.emptyCart, dispatch),
+        actions: bindActionCreators(cartActions, dispatch)
     }
 }
 

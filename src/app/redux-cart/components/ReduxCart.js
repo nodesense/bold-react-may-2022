@@ -6,7 +6,7 @@ import React from 'react';
 // as props, which can work with store
 const ReduxCart = (props) => {
     console.log("ReduxCart Render", props)
-    const {amount, addItem, emptyCart} = props;
+    const {amount, addItem, emptyCart, actions} = props;
     return (
         <div>
             <h2> Redux Cart </h2>
@@ -17,6 +17,10 @@ const ReduxCart = (props) => {
             <button onClick={emptyCart}>
                 Empty Cart
             </button>
+            <button onClick={actions.emptyCart}>
+                Empty Cart
+            </button>
+            
         </div>
     )
 }
