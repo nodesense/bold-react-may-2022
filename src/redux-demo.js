@@ -60,3 +60,11 @@ console.log("State after emptyCart ", store.getState())
 unsubscribeFunc() // 
 // calls reducers
 store.dispatch({type: 'FOOBOO'}) // susbcribe won't be called
+
+//getProActionFunc is action function, not action object
+const getProActionFunc = cartActions.getProducts()
+console.log("getProActionFunc is ", typeof (getProActionFunc), 
+                                        getProActionFunc)
+
+console.log("Dispatching Action Func ", getProActionFunc)
+store.dispatch(getProActionFunc)

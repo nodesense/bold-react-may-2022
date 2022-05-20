@@ -1,6 +1,7 @@
 // action creators
 // create and return action objects
 import * as ActionTypes from '../action-types';
+import { fetchProducts } from '../services/product.services';
 
 // es5
 export function removeItemFromCart(id) {
@@ -35,4 +36,33 @@ export const initProducts = (products) => ({
                                         type: ActionTypes.INIT_PRODUCTS, 
                                         payload: {products}
                                     })                                       
- 
+// redux-thunk is a library, a pattern, that makes 
+// action functions to call api, 
+// in all the action creators, we return object
+// in thunk, we return action function instead of action object
+// redux thunk/async functions
+// get data from backend
+// redux-thunk, we return a function instaed of object from action creator
+//getProducts is action function, that returns action function instead of action object
+export function getProducts() {
+    // return action  function instead of object
+    // this function we return here shall be dispatched by container
+    // redux-middleware middle, will check if dispatch data is object or function
+    // if action dispatched is function, ie current scenario
+    // the function is called by redux-middleware
+    // the function is not forwarded further
+    return async function (dispatch, getState) {
+        console.log("action function called")
+        // we write async code like API call
+        // use service api (optional) or axios directly here to get data from backend
+        // dispatch the data to reducer/store as action object
+
+        dispatch(initLoading(true)) // set the loading icon     
+        const products = await fetchProducts()
+        // we have to initialize products to store/reducer
+        console.log("Products fetched via thunk  ", products)
+        dispatch(initLoading(false)) // set the loading icon off
+        dispatch(initProducts(products)) // dispatch products to reducer
+    }
+}
+
