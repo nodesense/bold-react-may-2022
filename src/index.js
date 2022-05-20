@@ -9,6 +9,10 @@ import App from './app/App';
 import "./index.css" // webpack plugin , extract text
 
 import "./redux-demo";
+import { Provider } from 'react-redux';
+import store from './app/state/store';
+ 
+
 
 // v.dom
 // const h1 = React.createElement("h1", {id : 'appheader', className:"active"}, 'Welcome to React');
@@ -19,4 +23,8 @@ import "./redux-demo";
 //const h1 = <h1 id="appHeader" className="active">Welcome to React </h1>
 
 // mount v.dom into real dom using render
-ReactDOM.render(<App />, document.getElementById('root'));
+// Provider shall pass store as context to container component
+ReactDOM.render(<Provider store={store}>
+                    <App />
+                 </Provider>
+                    , document.getElementById('root'));
