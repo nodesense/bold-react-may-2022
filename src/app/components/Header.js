@@ -29,6 +29,9 @@ const Header = (props) => {
                      <NavLink className="button" to="/"  > {lang.home}</NavLink>   
                      <NavLink  className="button" to="/products"  > {lang.products}</NavLink>  
                      <NavLink  className="button" to="/cart"  > {lang.cart}</NavLink>  
+
+                     <NavLink  className="button" to="/redux-products"  >  Redux Products </NavLink>  
+                     
                      <NavLink  className="button" to="/redux-cart"  >  Redux Cart </NavLink>  
                      <NavLink  className="button" to="/checkout"  > Checkout </NavLink>  
                      <NavLink  className="button" to="/counter"  >  Counter </NavLink>  

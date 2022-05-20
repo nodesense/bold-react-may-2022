@@ -16,6 +16,7 @@ import {BrowserRouter as Router,
 } from 'react-router-dom';
 
 import ReduxCart from './redux-cart/containers/ReduxCart';
+import ReduxProductList from './redux-cart/containers/ReduxProductList';
 
 
 class App extends React.Component {
@@ -87,6 +88,13 @@ class App extends React.Component {
                 <Route path="/checkout">
                     <Checkout />
                 </Route>
+
+
+                
+                <Route path="/redux-products">
+                    <ReduxProductList />
+                </Route>
+
 
                 <Route path="/redux-cart">
                     <ReduxCart />
