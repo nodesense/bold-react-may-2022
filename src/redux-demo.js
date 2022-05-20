@@ -14,11 +14,23 @@ let state = store.getState()
 
 console.log("Initial state ", state)
 
+const unsubscribeFunc = store.subscribe ( () => {
+    // callback, called after every dispatch
+    // called whether state is changed or not 
+    console.log("**susbcribe called")
+    // if we want values, call getState
+    const state = store.getState()
+    console.log("SUSBCRIBE STATE ", state)
+})
+
 let action = cartActions.addItemToCart(1, 'product 1', 100)
 console.log("dispatching action", action)
 
 // should call reducers, update the store
+// after reducer, calls subscriber
 store.dispatch(action)
+
+console.log("DISPATCH DONE")
 
 state = store.getState()
 
@@ -40,10 +52,11 @@ console.log("dispatch remove item")
 store.dispatch(cartActions.removeItemFromCart(1))
 console.log("State after remove  item ", store.getState())
 
-
 console.log("dispatch emptyCart")
 store.dispatch(cartActions.emptyCart())
 console.log("State after emptyCart ", store.getState())
 
+// unsusbcribe from store, so that susbcribe won't be called
+unsubscribeFunc() // 
 // calls reducers
-store.dispatch({type: 'FOOBOO'})
+store.dispatch({type: 'FOOBOO'}) // susbcribe won't be called
